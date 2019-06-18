@@ -1,10 +1,12 @@
+import { combineReducers } from 'redux';
+
 import { ADD_TODO } from '../actions/index';
 
 const initialState = {
   todos: [],
 }
 
-export function addTodoReducer(state = initialState, action) {
+export function todosReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO:
       return [...state, action.payload]
@@ -12,3 +14,7 @@ export function addTodoReducer(state = initialState, action) {
       return state
   }
 }
+
+export const combinedReducers = combineReducers({
+  todos: todosReducer,
+});
