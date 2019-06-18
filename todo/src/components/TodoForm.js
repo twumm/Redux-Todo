@@ -1,15 +1,34 @@
 import React from 'react'
+import { connect } from 'react-redux';
 
-export default function TodoForm({ dothis }) {
+import { addTodo } from '../actions/index';
+
+export function TodoForm({ addTodo }) {
+  const taskRef = React.createRef();
+
+  const onAddTodo = (event) => {
+    event.preventDefault();
+    const task = taskRef.current.value;
+    
+    addTodo(task);
+  }
+
   return (
     <div>
-      <form>
+      <form
+        onSubmit={onAddTodo}
+      >
         <input
-          name="task"
           placeholder="Enter task"
-          onChange={dothis}
+          ref={taskRef}
+        />
+        <input
+          type="submit"
+          value="Add task"
         />
       </form>
     </div>
   )
 }
+
+export default connect(null, { addTodo })(TodoForm);
