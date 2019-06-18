@@ -11,9 +11,8 @@ const StyledContainer = styled.div`
 export default function Container() {
   return (
     <StyledContainer>
-      <h2>Container works</h2>
-      {/* <Todos />
-      <TodoForm /> */}
+      <Todos />
+      <TodoForm />
     </StyledContainer>
   )
 }
