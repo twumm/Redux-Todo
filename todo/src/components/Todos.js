@@ -1,8 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { deleteTodo, completeTodo } from '../actions/index';
+
 import Todo from './Todo';
 
-export default function Todos() {
-  const todos = this.props.todos || [];
+
+export function Todos(props) {
+  const todos = props.todos || [];
 
   return (
     <div>
@@ -12,8 +16,10 @@ export default function Todos() {
           todos.map(todo =>
             (
               <Todo
-                task={todo.task}
-                completed={todo.completed}
+                key={todo.id}
+                todo={todo}
+                completeTodo={props.completeTodo}
+                deleteTodo={props.deleteTodo}
               />
             )
           )
@@ -22,3 +28,11 @@ export default function Todos() {
     </div>
   )
 }
+
+function mapStateToProps(state) {
+  return {
+    todos: state.todos,
+  }
+}
+
+export default connect(mapStateToProps, {completeTodo, deleteTodo})(Todos);
