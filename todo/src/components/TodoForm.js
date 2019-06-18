@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { addTodo } from '../actions/index';
 
 export function TodoForm({ addTodo }) {
-  const taskRef = React.createRef();
+  let taskRef = React.createRef();
 
   const onAddTodo = (event) => {
     event.preventDefault();
     const task = taskRef.current.value;
     
     addTodo(task);
+    taskRef.current.value = ''
   }
 
   return (
